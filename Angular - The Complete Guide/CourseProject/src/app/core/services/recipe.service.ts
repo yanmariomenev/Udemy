@@ -11,28 +11,34 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) { }
   recipesChanged = new Subject<Recipe[]>();
- private recipes: Recipe[] = [
-    new Recipe
-    ('Burger',
-    'Tasty Burger',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg',
-    [
-      new Ingredient('Ground Beef', 250),
-      new Ingredient('Patty', 2),
-      new Ingredient('Salt', 1),
-      new Ingredient('Cheese', 15),
-    ]),
-    new Recipe
-    ('Chicken Soup',
-    'Spicy Chicken Soup for winter days',
-    'https://i.ytimg.com/vi/o91gT73mQhg/maxresdefault.jpg',
-    [
-      new Ingredient('Chicken Breast', 250),
-      new Ingredient('Chili Pepper', 2),
-      new Ingredient('Salt', 1),
-      new Ingredient('Farfal', 15),
-    ]),
-  ];
+  private recipes: Recipe[] = [];
+//  private recipes: Recipe[] = [
+//     new Recipe
+//     ('Burger',
+//     'Tasty Burger',
+//     'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/RedDot_Burger.jpg/1200px-RedDot_Burger.jpg',
+//     [
+//       new Ingredient('Ground Beef', 250),
+//       new Ingredient('Patty', 2),
+//       new Ingredient('Salt', 1),
+//       new Ingredient('Cheese', 15),
+//     ]),
+//     new Recipe
+//     ('Chicken Soup',
+//     'Spicy Chicken Soup for winter days',
+//     'https://i.ytimg.com/vi/o91gT73mQhg/maxresdefault.jpg',
+//     [
+//       new Ingredient('Chicken Breast', 250),
+//       new Ingredient('Chili Pepper', 2),
+//       new Ingredient('Salt', 1),
+//       new Ingredient('Farfal', 15),
+//     ]),
+//   ];
+
+  setRecipes(recipes: Recipe[]){
+  this.recipes = recipes;
+  this.recipesChanged.next(this.recipes.slice());
+  }
 
   getRecipes(){
     return this.recipes.slice();
